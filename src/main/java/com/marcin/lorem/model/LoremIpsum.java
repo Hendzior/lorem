@@ -1,11 +1,13 @@
 package com.marcin.lorem.model;
 
+import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 public class LoremIpsum implements Lorem {
 
@@ -118,6 +120,28 @@ public class LoremIpsum implements Lorem {
         }
         stringBuilder.append("</p>\n</ul>");
         return stringBuilder.toString();
+    }
+
+    @Override
+    public String loremIpsumService(int amount, int type) {
+        String lorems;
+
+        switch (type) {
+            case 1:
+                lorems = generateHtmlWords(amount);
+                break;
+            case 2:
+                lorems = generateHtmlParagraphs(amount);
+                break;
+            case 3:
+                lorems = generateHtmlList(amount);
+                break;
+            default:
+                lorems = generateHtmlParagraphs(amount);
+                break;
+        }
+
+        return lorems;
     }
 
 }
