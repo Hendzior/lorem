@@ -1,4 +1,4 @@
-package com.marcin.lorem.model;
+package com.marcin.lorem.service;
 
 public interface Lorem {
 
@@ -7,6 +7,6 @@ public interface Lorem {
     String generateHtmlWords(int value);
     String generateHtmlParagraphs(int value);
     String generateHtmlList(int value);
-    String loremIpsumService(int amount, int type);
+
 
 }

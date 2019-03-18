@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<div class="message" th:if="${message}">
+    <p th:text="${message}"/>
+</div>
 <form action="/result" method="get">
     <h3>Lorem Ipsum</h3>
     <br>

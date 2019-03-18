@@ -1,13 +1,11 @@
-package com.marcin.lorem.model;
+package com.marcin.lorem.service;
 
-import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 public class LoremIpsum implements Lorem {
 
@@ -30,13 +28,10 @@ public class LoremIpsum implements Lorem {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-
                 strings.add(line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
-
         }
         return strings;
     }
@@ -45,13 +40,11 @@ public class LoremIpsum implements Lorem {
     public String generateWords(int value) {
         StringBuilder stringBuilder = new StringBuilder();
 
-
         for (int wordCount = 0; wordCount < value; wordCount++) {
 
             String word = strings.get(random.nextInt(strings.size()));
             if (wordCount == 0) {
                 stringBuilder.append(StringUtils.capitalizeWords(word));
-
             } else if (wordCount == value - 1) {
                 stringBuilder.append(word);
                 stringBuilder.append(".");
@@ -59,9 +52,7 @@ public class LoremIpsum implements Lorem {
                 stringBuilder.append(word);
             stringBuilder.append(" ");
         }
-
         return stringBuilder.toString().trim();
-
     }
 
 
@@ -72,11 +63,9 @@ public class LoremIpsum implements Lorem {
 
         while (value > 0) {
             value--;
-
             stringBuilder.append(generateWords(random.nextInt(20) + 40));
             stringBuilder.append("\n");
         }
-
         return stringBuilder.toString();
     }
 
@@ -122,26 +111,6 @@ public class LoremIpsum implements Lorem {
         return stringBuilder.toString();
     }
 
-    @Override
-    public String loremIpsumService(int amount, int type) {
-        String lorems;
-
-        switch (type) {
-            case 1:
-                lorems = generateHtmlWords(amount);
-                break;
-            case 2:
-                lorems = generateHtmlParagraphs(amount);
-                break;
-            case 3:
-                lorems = generateHtmlList(amount);
-                break;
-            default:
-                lorems = generateHtmlParagraphs(amount);
-                break;
-        }
-
-        return lorems;
-    }
+//
 
 }
